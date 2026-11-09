@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
-"""
-Software for managing and analysing patients' 
-inflammation data in our imaginary hospital.
-"""
+"""Software for managing and analysing patients' inflammation data in our imaginary hospital."""
 
 import argparse
 from inflammation import models, views
 
+
 def main(args):
-    """
-    The MVC Controller of the patient inflammation data system.
+    """The MVC Controller of the patient inflammation data system.
 
     The Controller is responsible for:
     - selecting the necessary models and views for the current task
