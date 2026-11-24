@@ -4,6 +4,7 @@ import os
 import pytest
 import numpy as np
 import numpy.testing as npt
+import pytest
 
 from inflammation.models import daily_mean
 from unittest.mock import Mock
@@ -129,6 +130,19 @@ def test_analyse_data():
 
     npt.assert_array_almost_equal(result, expected_result)
 
+
+@pytest.mark.parametrize('data, expected_standard_deviation', [
+    ([0, 0, 0], 0.0),
+    ([1.0, 1.0, 1.0], 0),
+    ([0.0, 2.0], 1.0),
+    ([1.0, 2.0, 3.0], 0.81649658092773)
+])
+def test_daily_standard_deviation(data, expected_standard_deviation):
+    from inflammation.models import compute_standard_deviation
+    result_data = compute_standard_deviation(data)
+    npt.assert_approx_equal(result_data, expected_standard_deviation)
+    
+    
 @pytest.mark.parametrize(
     "data, expected_output",
 	[
